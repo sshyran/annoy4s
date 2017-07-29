@@ -15,7 +15,7 @@ lazy val root = (project in file(".")).settings(
     "org.slf4j" % "slf4j-simple" % "1.7.14" % "test"
   ),
   fork := true,
-  organization := "net.pishen",
+  organization := "com.gilt",
   licenses += "Apache-2.0" -> url("https://www.apache.org/licenses/LICENSE-2.0.html"),
   homepage := Some(url("https://github.com/pishen/annoy4s")),
   pomExtra := (
@@ -43,3 +43,27 @@ lazy val root = (project in file(".")).settings(
     cmd.!
   }
 )
+
+// Release configuration
+publishArtifact in Test := false
+
+pomIncludeRepository := { _ => false }
+
+publishMavenStyle := false
+
+resolvers := Seq(
+  DefaultMavenRepository,
+  Resolver.typesafeRepo("releases")
+)
+
+publishTo := {
+  val nexus = "https://nexus.gilt.com/nexus/"
+  if (isSnapshot.value) {
+    Some("snapshots" at nexus + "content/repositories/gilt.snapshots")
+  }
+  else {
+    Some("releases" at nexus + "content/repositories/internal-releases/")
+  }
+}
+
+credentials += Credentials("Sonatype Nexus Repository Manager", "nexus.gilt.com", "publisher", "/Publish3r!")
