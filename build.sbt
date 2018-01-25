@@ -4,6 +4,7 @@ val compileNative = taskKey[Unit]("Compile cpp into shared library.")
 
 lazy val root = (project in file(".")).settings(
   name := "annoy4s",
+  version := "0.6.0",
   scalaVersion := "2.11.11",
   crossScalaVersions := Seq("2.11.11", "2.12.3"),
   libraryDependencies ++= Seq(
@@ -16,16 +17,20 @@ lazy val root = (project in file(".")).settings(
   fork := true,
   organization := "com.gilt",
   licenses += "Apache-2.0" -> url("https://www.apache.org/licenses/LICENSE-2.0.html"),
-  homepage := Some(url("https://github.com/pishen/annoy4s")),
+  homepage := Some(url("https://github.com/gilt/annoy4s")),
   pomExtra := (
     <scm>
-      <url>https://github.com/pishen/annoy4s.git</url>
-      <connection>scm:git:git@github.com:pishen/annoy4s.git</connection>
+      <url>https://github.com/gilt/annoy4s.git</url>
+      <connection>scm:git:git@github.com:gilt/annoy4s.git</connection>
     </scm>
     <developers>
       <developer>
         <id>pishen</id>
         <name>Pishen Tsai</name>
+      </developer>
+      <developer>
+        <id>nemo83</id>
+        <name>Giovanni Gargiulo</name>
       </developer>
     </developers>
   ),
