@@ -49,6 +49,7 @@ lazy val root = (project in file(".")).settings(
 )
 
 // Release configuration
+updateOptions := updateOptions.value.withGigahorse(false) //release workaround
 publishArtifact in Test := false
 
 pomIncludeRepository := { _ => false }
